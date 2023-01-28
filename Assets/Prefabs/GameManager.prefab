@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 3904450361672985277}
   - component: {fileID: 3904450361672985272}
   - component: {fileID: 3904450361672985279}
+  - component: {fileID: 8580432336632976217}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -182,7 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544cef6443458ae4eadb24ac0bde3308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsPrefix: wannaB.Template-2D.Settings
 --- !u!114 &3904450361672985272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,3 +210,15 @@ MonoBehaviour:
   onGamePauseStatusChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8580432336632976217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3904450361672985266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f59d01827274306b98aa5479ab9bbaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

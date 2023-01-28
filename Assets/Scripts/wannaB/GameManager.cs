@@ -2,6 +2,7 @@
 using wannaB.Audio;
 using wannaB.Camera;
 using wannaB.Gameplay.Pause;
+using wannaB.Gameplay.Player;
 using wannaB.Settings;
 using wannaB.Utility;
 
@@ -11,12 +12,14 @@ namespace wannaB
 [RequireComponent(typeof(AudioManager))]
 [RequireComponent(typeof(CameraManager))]
 [RequireComponent(typeof(PauseManager))]
+[RequireComponent(typeof(PlayerManager))]
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     private SettingsManager _settingsManager;
     private AudioManager _audioManager;
     private CameraManager _cameraManager;
     private PauseManager _pauseManager;
+    private PlayerManager _playerManager;
 
     #region Public Getters
 
@@ -24,6 +27,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public static AudioManager Audio => Instance._audioManager;
     public static CameraManager Camera => Instance._cameraManager;
     public static PauseManager Pause => Instance._pauseManager;
+    public static PlayerManager Player => Instance._playerManager;
 
     #endregion
 
@@ -35,6 +39,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         InitializeAudio();
         InitializeCamera();
         InitializePause();
+        InitializePlayer();
     }
 
     #region Initialize Methods
@@ -60,6 +65,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         _pauseManager = this.GetComponent<PauseManager>();
         _pauseManager.UnpauseGame();
+    }
+
+    private void InitializePlayer()
+    {
+        _playerManager = this.GetComponent<PlayerManager>();
     }
 
     #endregion Initialize Methods

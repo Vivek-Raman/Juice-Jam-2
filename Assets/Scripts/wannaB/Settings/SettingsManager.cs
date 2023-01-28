@@ -7,7 +7,6 @@ namespace wannaB.Settings
 {
 public class SettingsManager : MonoBehaviour
 {
-
     private List<SettingItem> _settings;
     private string _settingsPrefix;
 
@@ -31,6 +30,8 @@ public class SettingsManager : MonoBehaviour
 
     public void LoadSettings()
     {
+        if (_settings == null) PullSettings();
+
         foreach (SettingItem item in _settings)
         {
             string newValue = PlayerPrefs.GetString(GetPrefsKey(item.SettingKey), item.SettingDefaultValue);
@@ -40,6 +41,8 @@ public class SettingsManager : MonoBehaviour
 
     public void TrySaveFirstLaunchSettings()
     {
+        if (_settings == null) PullSettings();
+
         if (bool.Parse(PlayerPrefs.GetString(GetPrefsKey(SettingKey.ReturningPlayer), "false"))) return;
         foreach (SettingItem item in _settings)
         {
@@ -48,6 +51,12 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetString(GetPrefsKey(SettingKey.ReturningPlayer), "true");
         PlayerPrefs.Save();
+    }
+
+    private void PullSettings()
+    {
+        _settings = new List<SettingItem>(this.GetComponentsInChildren<SettingItem>());
+        _settingsPrefix = PlayerSettings.companyName + "." + PlayerSettings.productName + ".Settings";
     }
 
     private string GetPrefsKey(SettingKey key) => _settingsPrefix + "." + key.ToString();

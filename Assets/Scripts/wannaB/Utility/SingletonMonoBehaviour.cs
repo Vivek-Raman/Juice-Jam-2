@@ -23,10 +23,15 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if (FindObjectOfType<T>() != null)
+        T[] instances = FindObjectsOfType<T>();
+        foreach (T instance in instances)
         {
-            Destroy(this.gameObject);
+            if (instance != this)
+            {
+                Destroy(this.gameObject);
+            }
         }
+
         DontDestroyOnLoad(this);
     }
 }
